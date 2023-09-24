@@ -1,0 +1,86 @@
+body{
+    background-color: white;
+    color: black;
+}
+
+a{
+    color: green;
+}
+
+a:hover{
+    color: darkcyan;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    
+}
+
+.top{
+    background-color:red;
+}
+
+em{
+    background-color: blue;
+}
+
+#important{
+    text-transform: uppercase;
+    background-color: gold;
+}
+
+/* excercise 3 below */
+
+h2{
+    font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: capitalize;
+    
+}
+
+h2 + p{
+    font-size: x-large;
+}
+tr:hover{
+    background-color: bisque;
+}
+nav{
+    display:inline;
+}
+
+nav li:not(:first-child) a{
+    text-decoration: none;
+}
+nav li:first-child a{
+    text-decoration: underline;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: gray;
+    }
+  
+table tbody tr:nth-child(odd) {
+    background-color: white
+    }
+
+p::selection{
+    background-color: brown;
+    
+}
+
+body > a{
+    cursor: pointer;
+}
+input{
+    height: 20px;
+}
+input[type="text"]{
+    border-color: lightgray;
+}
+input[name="message"]{
+    height: 50px;
+}
+  
+  
