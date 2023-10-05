@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .cell {
+            font-family: sans-serif;
+            font-size: larger;
+            font-weight: bolder;
+            background-color: beige;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cell:hover{
+            background-color: blanchedalmond;
+        }
+
+        .row {
+            display: flex;
+        }
+        #inner{
+            width: 50px;
+            height: 50px;
+            background-color: red;;
+        }
+
+        button{
+            font-family: sans-serif;
+            font-size: larger;
+            font-weight: 400;
+            width: 120px;
+            height: 50px;
+
+            background-color: burlywood;
+            margin-top: 20px;
+            border-radius: 10px;
+            border-color: transparent;
+            
+        }
+        .selectedCell{
+            font-family: sans-serif;
+            font-size: larger;
+            font-weight: bolder;
+            background-color: wheat;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="turn">
+        Now it's is X turn
+    </h1>
+    <!-- Board -->
+    <div class="board">
+        <div class="row">
+            <div class="cell" id="0"></div>
+            <div class="cell" id="1"></div>
+            <div class="cell" id="2"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="3"></div>
+            <div class="cell" id="4"></div>
+            <div class="cell" id="5"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="6"></div>
+            <div class="cell" id="7"></div>
+            <div class="cell" id="8"></div>
+        </div>
+    </div>
+    <button>
+        Reset game
+    </button>
+    <script>
+
+        //variables
+        let turn = "X"
+        let gameModel = ["","","","","","","","",""]
+        let ended = false;
+        
+        
+        // when user clicks the cell show the letter (unless there is a letter)
+        const board = document.querySelector(".board")
+        board.addEventListener("click",cellClicked)
+        const button = document.querySelector("button")
+        button.addEventListener("click", reset)
+
+        function reset(event){
+            turn = "X"
+            gameModel = ["","","","","","","","",""]
+            document.querySelector("#turn").innerHTML = `Now it's is ${turn} turn`
+            let ended = false;
+            let cells = document.querySelectorAll(".selectedCell")
+            for(let c of cells){
+                c.className = "cell"
+                c.innerHTML = ""
+                button.style.background = "burlywood"
+            }
+        }
+
+        function cellClicked(event){
+            
+            // get the cell 
+            const cell = event.target
+            
+            
+            if (cell.childNodes.length===0 && !ended){ // add a letter
+                const letterObject = document.createTextNode(turn)
+                cell.appendChild(letterObject)
+                let i = parseInt(cell.id)
+                gameModel[i] = turn
+                cell.className = "selectedCell"
+                
+
+                //check wheather game ended
+                
+
+                // diagonally
+                if ((turn === gameModel[0]  && 
+                    turn === gameModel[4]   &&
+                    turn === gameModel[8])  ||(
+                    turn === gameModel[2]   && 
+                    turn === gameModel[4]   &&
+                    turn === gameModel[6])){
+                    //console.log(turn + " won")
+                    ended = true
+                    document.querySelector("#turn").innerHTML = turn + " won"
+
+                }
+                // through a row or a column
+                for(let k=0; k< 3;k++){
+                    if ((turn === gameModel[3*k+0] && 
+                        turn === gameModel[3*k+1]  &&
+                        turn === gameModel[3*k+2]) ||(
+                        turn === gameModel[k+0]    && 
+                        turn === gameModel[k+3]    &&
+                        turn === gameModel[k+6])){
+                            //console.log(turn + " won")
+                            ended = true
+                            document.querySelector("#turn").innerHTML = turn + " won"
+                        }
+                }
+
+                // check if draw
+                if(!ended){
+                    ended = true
+                    for (let k = 0; k<9; k++){
+                        if (gameModel[k] === "")
+                            ended = false;
+                    }
+                    if(ended)
+                    document.querySelector("#turn").innerHTML = "Draw !"
+                }
+                
+
+
+                //switch turns
+                turn = turn === "X" ? "O" : "X"
+    
+                //chenge title
+                if (!ended)
+                document.querySelector("#turn").innerHTML = `Now it's is ${turn} turn`                
+                //console.log(ended)
+                else{
+                    button.style.background = "lightblue";
+                }
+            }    
+           
+
+        }
+        
+
+    </script>
+</body>
+</html>
