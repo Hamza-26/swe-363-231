@@ -1,0 +1,97 @@
+.logo{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.logo h1{
+    text-transform: uppercase;
+    position: absolute;
+    top: 195px;
+    left: 103px;
+    font-family: "Poppins-Bold", Helvetica;
+    font-weight: 700;
+    color: #282828;
+    font-size: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.logo p{
+    position: absolute;
+    top: 291px;
+    left: 95px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #282828;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.logo img{
+    position: absolute;
+    width: 653px;
+    top: 152px;
+    left: 600px;
+}
+
+a#1{
+    position: absolute;
+    top: 59px;
+    left: 837px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #282828;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+a#2{
+    position: absolute;
+    top: 59px;
+    left: 5017px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #282828;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.text{
+    position: absolute;
+    width: 527px;
+    height: 186px;
+    top: 1194px;
+    left: 100px;
+}
+
+.text .cap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Poppins-Medium", Helvetica;
+    font-weight: 500;
+    color: #282828;
+    font-size: 48px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.text .smal{
+    position: absolute;
+    top: 78px;
+    left: 1px;
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #282828;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
