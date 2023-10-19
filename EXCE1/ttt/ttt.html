@@ -72,6 +72,20 @@
             justify-content: center;
             align-items: center;
         }
+        .KeyCell{
+            font-family: sans-serif;
+            font-size: larger;
+            font-weight: bolder;
+            background-color: blanchedalmond;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+        }
         #instructions{
             display: flex;
             flex-direction: column;
@@ -119,7 +133,7 @@
 
     <div id="instructions">
         <h2>Keyboard instructions</h2>
-        <p>you can use the 'WASD' keys to play and press Enter to select the cell</p>
+        <p>you can use the 'WASD' keys to play and press Enter to select the cell, you may use R for reset</p>
         <button onclick="hide()">OK</button>
     </div>
 
@@ -129,9 +143,9 @@
         let turn = "X"
         let gameModel = ["","","","","","","","",""]
         let ended = false;
-        let keyboardCell = null;
+        let keyboardCellNum = null;
         
-        
+         
         // when user clicks the cell show the letter (unless there is a letter)
         const board = document.querySelector(".board")
         board.addEventListener("click",cellClicked)
@@ -141,41 +155,57 @@
 
         //change the selected cell when user presses the keys
         document.addEventListener("keydown", keyboard)
-        function keyboard(event){
-            console.log(keyboardCell)
-            console.log(event.key)
-            if(keyboardCell === null) keyboardCell = 0
-            else if(event.key === "w" || event.key === "W"){
-                if(keyboardCell > 2) keyboardCell -= 3
+        function keyboard(event) {
+            if (keyboardCellNum === null) {
+                keyboardCellNum = 0
+                document.getElementById(`${keyboardCellNum}`).className = "KeyCell";
             }
-            else if(event.key === "a" || event.key === "A"){
-                if(keyboardCell % 3 !== 0) keyboardCell -= 1
-            }
-            else if(event.key === "s" || event.key === "S"){
-                if(keyboardCell < 6) keyboardCell += 3
-            }
-            else if(event.key === "d" || event.key === "D"){
-                if(keyboardCell % 3 !== 2) keyboardCell += 1
-            }
-            else if(event.key === "Enter"){
-                if(keyboardCell !== null){
-                    clickCell(document.getElementById(keyboardCell))
+            else {
+                let Keycell = document.getElementById(`${keyboardCellNum}`)
+                if (Keycell.className === "KeyCell") Keycell.className = "cell";
+                if(event.key === "w" || event.key === "W"){
+                    if (keyboardCellNum > 2) keyboardCellNum -= 3;
+                    if (document.getElementById(`${keyboardCellNum}`).className === "cell")
+                    document.getElementById(`${keyboardCellNum}`).className = "KeyCell";
+                }
+                else if(event.key === "s" || event.key === "S"){
+                    if (keyboardCellNum < 6) keyboardCellNum += 3;
+                    if(document.getElementById(`${keyboardCellNum}`).className === "cell")
+                    document.getElementById(`${keyboardCellNum}`).className = "KeyCell";
+                }
+                else if(event.key === "a" || event.key === "A"){
+                    if (keyboardCellNum % 3 !== 0) keyboardCellNum -= 1;
+                    if(document.getElementById(`${keyboardCellNum}`).className === "cell")
+                    document.getElementById(`${keyboardCellNum}`).className = "KeyCell";
+                }
+                else if(event.key === "d" || event.key === "D"){
+                    if (keyboardCellNum % 3 !== 2) keyboardCellNum += 1;
+                    if(document.getElementById(`${keyboardCellNum}`).className === "cell")
+                    document.getElementById(`${keyboardCellNum}`).className = "KeyCell";
+                }else if(event.key === "Enter" || event.key === " "){
+                    clickCell(Keycell)
+                }else if(event.key === "r" || event.key === "R"){
+                    reset()
                 }
             }
-            console.log(keyboardCell)
+            console.log(keyboardCellNum);
         }
         
-        function reset(event){
-            turn = "X"
-            gameModel = ["","","","","","","","",""]
-            document.querySelector("#turn").innerHTML = `Now it's is ${turn} turn`
+        
+        function reset(event) {
+            keyboardCellNum = null;
+            turn = "X";
+            gameModel = ["", "", "", "", "", "", "", "", ""];
+            document.querySelector("#turn").innerHTML = `Now it's is ${turn} turn`;
             ended = false;
-            let cells = document.querySelectorAll(".selectedCell")
-            for(let c of cells){
-                c.className = "cell"
-                c.innerHTML = ""
+        
+            let cells = document.querySelectorAll(".selectedCell, .KeyCell");
+            for (let c of cells) {
+                c.className = "cell";
+                c.innerHTML = "";
             }
         }
+        
         
         function hide(){
             document.querySelector("#instructions").style.display = "none"
