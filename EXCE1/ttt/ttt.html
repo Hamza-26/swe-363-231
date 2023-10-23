@@ -161,6 +161,7 @@
                 document.getElementById(`${keyboardCellNum}`).className = "KeyCell";
             }
             else {
+                console.log(event.key)
                 let Keycell = document.getElementById(`${keyboardCellNum}`)
                 if (Keycell.className === "KeyCell") Keycell.className = "cell";
                 if(event.key === "w" || event.key === "W"){
