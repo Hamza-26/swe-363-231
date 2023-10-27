@@ -36,7 +36,7 @@ body{
     transition: width 1s ease-out;
 }
 .logo img:hover{
-    width: 250px;
+    width: 300px;
     transition: width 1s ease-out;
 }
 
@@ -99,3 +99,47 @@ nav a{
     margin: 0px 20px;
     padding: 1px;  
 }
+
+
+
+    /*loader animation with animation property */
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        background-color: black;
+        margin: 0;
+        padding: 0;
+        animation: fadeOut 1.5s ease-in-out 0.5s forwards;
+    }
+    
+    .loader img{
+        width: 10em;
+        height: 10em;
+        animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+    
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+    
+        100% {
+            opacity: 0;
+            visibility:hidden;
+        }
+    }
+  
