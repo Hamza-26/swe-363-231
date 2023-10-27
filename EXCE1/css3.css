@@ -58,6 +58,7 @@ body{
     color: lightgray;
 }
 .text .smal{
+    text-align: center;
     font-size: 20px;
     font-weight: 300;
     margin: 0;
